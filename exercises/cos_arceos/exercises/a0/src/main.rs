@@ -7,8 +7,16 @@ use axstd::println;
 
 
 // TODO: Implement macro println_prefix.
+#[macro_export]
+macro_rules! println_prefix {
+    ($prefix:expr, $($arg:tt)*) => {
+        println!("{}", stringify!($prefix));
+        println!($($arg)*);
+    };
+}
+
 #[cfg(feature = "axstd")]
-use axstd::println_prefix;
+//use axstd::println_prefix;
 
 #[cfg_attr(feature = "axstd", no_mangle)]
 fn main() {
